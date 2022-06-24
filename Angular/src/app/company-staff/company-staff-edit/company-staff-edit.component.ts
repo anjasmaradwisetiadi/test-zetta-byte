@@ -10,17 +10,16 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./company-staff-edit.component.scss']
 })
 export class CompanyStaffEditComponent implements OnInit {
-  staffForm: FormGroup;
+
   dataStaff = {
-    name: '',
     email: '',
     firstName: '',
     lastName: '',
-    civility: '',
+    civility: 'MR',
     companyName: '',
     userType: '',
     userStatus: '',
-    countDocument: 0
+    countDocument: 15
   };
   isValidEmail = false;
   buttonEmail = true;
@@ -75,18 +74,16 @@ export class CompanyStaffEditComponent implements OnInit {
 
   }
   initForm(): void{
-    this.dataStaff.name = '';
     this.dataStaff.email = '';
     this.dataStaff.firstName = '';
     this.dataStaff.lastName = '';
-    this.dataStaff.civility = '';
+    this.dataStaff.civility = 'MR';
     this.dataStaff.companyName = '';
     this.dataStaff.userType = '';
-    this.dataStaff.userStatus = '';
+    this.dataStaff.userStatus = 'active';
     this.dataStaff.countDocument = 0;
 
     if (this.data.toggle === 'edit'){
-      this.dataStaff.name = this.data.editData.name;
       this.dataStaff.email = this.data.editData.email;
       this.dataStaff.firstName = this.data.editData.first_name;
       this.dataStaff.lastName = this.data.editData.last_name;
@@ -101,11 +98,7 @@ export class CompanyStaffEditComponent implements OnInit {
   handleValidateEmail(): void{
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (this.buttonEmail){
-      if ((this.dataStaff.email).match(validRegex)){
-        this.isValidEmail = true;
-      } else{
-        this.isValidEmail = false;
-      }
+      this.isValidEmail = !!(this.dataStaff.email).match(validRegex);
       this.buttonEmail = false;
     } else{
       this.buttonEmail = true;

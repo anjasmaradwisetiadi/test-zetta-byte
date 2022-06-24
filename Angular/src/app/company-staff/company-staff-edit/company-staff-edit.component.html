@@ -12,6 +12,7 @@
                 <input
                   [(ngModel)]="dataStaff.email"
                   matInput
+                  type="email"
                   required
                 >
               </mat-form-field>
@@ -45,13 +46,13 @@
               >
                 <mat-radio-button
                   class="mr-2"
-                  value="Mr"
-                  [checked]="dataStaff.civility === 'Mr'">
+                  value="MR"
+                  [checked]="dataStaff.civility === 'MR'">
                   Mr
                 </mat-radio-button>
                 <mat-radio-button
-                  value="Ms"
-                  [checked]="dataStaff.civility === 'Ms'"
+                  value="MRS"
+                  [checked]="dataStaff.civility === 'MRS'"
                 >
                   Ms
                 </mat-radio-button>
@@ -131,10 +132,19 @@
     <div class="col">
       <button class="btn btn-warning mr-2"
               mat-dialog-close="false"
-      >No Thanks</button>
+      >Cancel</button>
       <button
         class="btn btn-primary"
         (click)="handleSave()"
+        [disabled]="
+          !this.dataStaff.email ||
+          !this.dataStaff.firstName ||
+          !this.dataStaff.lastName ||
+          !this.dataStaff.civility ||
+          !this.dataStaff.companyName ||
+          !this.dataStaff.userType ||
+          !this.dataStaff.userStatus
+        "
       >Ok</button>
     </div>
   </div>
