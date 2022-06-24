@@ -81,7 +81,7 @@ export class CompanyStaffEditComponent implements OnInit {
     this.dataStaff.companyName = '';
     this.dataStaff.userType = '';
     this.dataStaff.userStatus = 'active';
-    this.dataStaff.countDocument = 0;
+    this.dataStaff.countDocument = 15;
 
     if (this.data.toggle === 'edit'){
       this.dataStaff.email = this.data.editData.email;
