@@ -30,6 +30,11 @@
               class="d-flex justify-content-center text-success">
               Email is Ready
             </div>
+            <div
+              *ngIf="!isValidEmail"
+              class="d-flex justify-content-center text-danger">
+              Email is Wrong
+            </div>
           </div>
         </div>
       </div>

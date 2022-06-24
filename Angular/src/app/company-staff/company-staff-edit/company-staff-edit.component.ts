@@ -37,11 +37,6 @@ export class CompanyStaffEditComponent implements OnInit {
     this.initForm();
   }
 
-  collectForm(): string{
-    const message = 'this.collect data';
-    return message;
-  }
-
   handleSave(): void{
     let uniqueId;
     if (this.data.toggle === 'edit'){
