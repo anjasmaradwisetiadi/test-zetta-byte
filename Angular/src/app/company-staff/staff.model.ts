@@ -11,4 +11,8 @@ export interface StaffInterface{
   };
   user_status: string;
   count_document: number;
+  position: string;
+  office_phone: string;
+  direct_line: string;
+  mobile_phone: string;
 }

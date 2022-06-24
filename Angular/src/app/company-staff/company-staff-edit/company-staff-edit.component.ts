@@ -15,11 +15,15 @@ export class CompanyStaffEditComponent implements OnInit {
     email: '',
     firstName: '',
     lastName: '',
+    position: '',
+    officePhone: '',
+    directLine: '',
+    mobilePhone: '',
     civility: 'MR',
     companyName: '',
     userType: '',
     userStatus: '',
-    countDocument: 15
+    countDocument: 15,
   };
   isValidEmail = false;
   buttonEmail = true;
@@ -57,7 +61,11 @@ export class CompanyStaffEditComponent implements OnInit {
         user_type: this.dataStaff.userType
       },
       user_status: 'active',
-      count_document: 15
+      count_document: 15,
+      position: this.dataStaff.position,
+      office_phone: this.dataStaff.officePhone,
+      direct_line: this.dataStaff.directLine,
+      mobile_phone: this.dataStaff.mobilePhone,
     };
 
     if (this.data.toggle === 'edit'){
@@ -77,6 +85,10 @@ export class CompanyStaffEditComponent implements OnInit {
     this.dataStaff.email = '';
     this.dataStaff.firstName = '';
     this.dataStaff.lastName = '';
+    this.dataStaff.position = '';
+    this.dataStaff.officePhone = '';
+    this.dataStaff.directLine = '';
+    this.dataStaff.mobilePhone = '';
     this.dataStaff.civility = 'MR';
     this.dataStaff.companyName = '';
     this.dataStaff.userType = '';
@@ -87,6 +99,10 @@ export class CompanyStaffEditComponent implements OnInit {
       this.dataStaff.email = this.data.editData.email;
       this.dataStaff.firstName = this.data.editData.first_name;
       this.dataStaff.lastName = this.data.editData.last_name;
+      this.dataStaff.position = this.data.editData.position;
+      this.dataStaff.officePhone = this.data.editData.office_phone;
+      this.dataStaff.directLine = this.data.editData.direct_line;
+      this.dataStaff.mobilePhone = this.data.editData.mobile_phone;
       this.dataStaff.civility = this.data.editData.civility;
       this.dataStaff.companyName = this.data.editData.company.name;
       this.dataStaff.userType = this.data.editData.company.user_type;
