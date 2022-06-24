@@ -1,0 +1,58 @@
+<table>
+  <thead>
+    <tr style="background-color: darkgray ">
+      <td colspan="3">Name</td>
+      <td>User type</td>
+      <td>Entity</td>
+      <td>Status</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="loading">
+    <tr>
+      <td
+        class="text-center"
+        colspan="7">
+        <app-loading></app-loading>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody *ngIf="!loading && error">
+    <tr>
+      <td
+        class="text-center"
+        colspan="7">
+        <app-error></app-error>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="!loading && !error">
+    <tr
+      *ngFor="let staff of staffCollect"
+    >
+      <td colspan="3">{{staff.first_name}}</td>
+      <td>{{staff.company.name}}</td>
+      <td>{{staff.company.user_type}}</td>
+      <td class="margin-contain">
+        <span [class]="staff.user_status === 'active'? 'active': 'passive'">
+        </span>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center">
+          <div class="d-flex button-edit mr-2" (click)="handleEdit(staff)">
+            <span class="img-rounded">
+              <img src="../../../assets/Image/pencil.png" alt="pencil">
+            </span>
+          </div>
+          <div class="d-flex button-delete justify-content-center" (click)="hanldeDelete(staff)">
+            <span class="img-rounded">
+              <img src="../../../assets/Image/cancel.png" alt="cancel">
+            </span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

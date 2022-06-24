@@ -1,0 +1,140 @@
+<h3>
+  Add Staff Company
+</h3>
+<hr>
+  <div mat-dialog-content>
+      <div class="row">
+        <div class="col">
+          <div class="d-flex">
+            <div class="mr-2">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input
+                  [(ngModel)]="dataStaff.email"
+                  matInput
+                  required
+                >
+              </mat-form-field>
+            </div>
+            <div class="mr-2">
+              <button
+                (click)="handleValidateEmail()"
+                class="btn btn-warning"
+              >
+                Check Email Activity
+              </button>
+            </div>
+            <div
+              *ngIf="isValidEmail"
+              class="d-flex justify-content-center text-success">
+              Email is Ready
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <div class="d-flex">
+            <span class="mr-3">Civility</span>
+            <div >
+              <mat-radio-group
+                class="d-flex"
+                aria-label="Select an option"
+                [(ngModel)]="dataStaff.civility"
+                required
+              >
+                <mat-radio-button
+                  class="mr-2"
+                  value="Mr"
+                  [checked]="dataStaff.civility === 'Mr'">
+                  Mr
+                </mat-radio-button>
+                <mat-radio-button
+                  value="Ms"
+                  [checked]="dataStaff.civility === 'Ms'"
+                >
+                  Ms
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input
+              [(ngModel)]="dataStaff.firstName"
+              matInput type="text"
+              required
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input
+              [(ngModel)]="dataStaff.lastName"
+              matInput type="text"
+              required
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>Count document</mat-label>
+            <input
+              [(ngModel)]="dataStaff.countDocument"
+              matInput type="text"
+              required
+            >
+          </mat-form-field>
+        </div>
+      </div>
+  </div>
+      <div class="row">
+        <div class="col-3">
+          <mat-form-field >
+            <mat-label>Select Company</mat-label>
+            <select matNativeControl
+                    [(ngModel)]="dataStaff.companyName"
+                    required
+            >
+              <option
+                value="Company"
+                [selected]="dataStaff.companyName === 'Company'">
+                  Company
+              </option>
+              <option
+                value="Personal"
+                [selected]="dataStaff.companyName === 'Personal'">Personal</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
+            <mat-label>Select Entity</mat-label>
+            <select matNativeControl
+                    [(ngModel)]="dataStaff.userType"
+                    required
+            >
+              <option value="Mentor"  [selected]="dataStaff.userType === 'Mentor'">
+                Mentor
+              </option>
+              <option value="Student"  [selected]="dataStaff.userType === 'Student'">
+                Student
+              </option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+  <div class="row justify-content-center text-center" mat-dialog-actions>
+    <div class="col">
+      <button class="btn btn-warning mr-2"
+              mat-dialog-close="false"
+      >No Thanks</button>
+      <button
+        class="btn btn-primary"
+        (click)="handleSave()"
+      >Ok</button>
+    </div>
+  </div>

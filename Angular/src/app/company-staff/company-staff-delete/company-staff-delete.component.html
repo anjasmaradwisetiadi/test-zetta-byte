@@ -1,0 +1,33 @@
+<div mat-dialog-content>
+  <div class="row text-center">
+    <div class="col">
+      <div>
+        <img
+          src="../../../assets/Image/warning.png"
+          alt="warning"
+          style="width: 50%; height: 140px"
+        >
+      </div>
+      <h3 class="font-bold">Attention</h3>
+      <p>Are you sure want delete staff with name
+        <br>
+        <b>{{data.deleteData.first_name}}</b>
+        <br>
+        from this company
+        ? </p>
+    </div>
+    </div>
+</div>
+<div
+  class="row text-center"
+  mat-dialog-actions
+>
+  <div class="col">
+    <button
+      class="btn btn-secondary mr-2"
+      mat-dialog-close>Cancel</button>
+    <button
+      class="btn btn-danger"
+      (click)="handleDelete()">Ok</button>
+  </div>
+</div>
