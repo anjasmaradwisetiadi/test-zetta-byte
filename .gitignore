@@ -8,6 +8,7 @@ angular/out-tsc
 angular/bazel-out
 
 # dependencies
+#date
 angular/node_modules
 
 # profiling files
