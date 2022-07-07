@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import {ProductInterface} from './company-staff/staff.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService implements InMemoryDbService {
   constructor() { }
-  createDb() {
+  createDb(): ProductInterface {
     return {
       products: [
         {
@@ -33,7 +35,7 @@ export class DataService implements InMemoryDbService {
           last_name: 'BONOMALLY',
           company: {
             name: 'Company',
-            user_type: 'Mentor'
+            user_type: 'Boss'
           },
           user_status: 'active',
           count_document: 15,
@@ -43,7 +45,7 @@ export class DataService implements InMemoryDbService {
           mobile_phone: '+98763542297442'
         },
         {
-          _id: 3,
+          id: 3,
           email: 'dominique.monachon@yopmail.com',
           civility: 'MR',
           first_name: 'Dominique',

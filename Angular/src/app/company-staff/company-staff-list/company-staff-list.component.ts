@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StaffInterface} from '../staff.model';
 import {CompanyStaffService} from '../company-staff.service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {CompanyStaffEditComponent} from '../company-staff-edit/company-staff-edit.component';
 import {CompanyStaffDeleteComponent} from '../company-staff-delete/company-staff-delete.component';
-
+import {filter, first, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-company-staff-list',
@@ -14,6 +14,7 @@ import {CompanyStaffDeleteComponent} from '../company-staff-delete/company-staff
 })
 export class CompanyStaffListComponent implements OnInit, OnDestroy {
   private staffCollectSubs: Subscription;
+  resultFilter = '';
   staffCollect: Array<StaffInterface> = [];
   loading = true;
   error = false;
@@ -24,19 +25,36 @@ export class CompanyStaffListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.companyStaffService.getStaff();
-
-    this.staffCollectSubs = this.companyStaffService.staffInfo.subscribe((response: any) => {
-      this.staffCollect = response;
-      this.loading = false;
-      this.error = false;
-    }, (error) => {
-      this.loading = false;
-      this.error = true;
+    this.companyStaffService.filterStaffInfo.subscribe((filterVal) => {
+      this.resultFilter = filterVal;
     });
+    this.staffCollectSubs = this.fetchStaff();
   }
 
   ngOnDestroy(): void {
     this.staffCollectSubs.unsubscribe();
+  }
+
+  fetchStaff(): Subscription{
+     return this.companyStaffService.staffInfo
+      .pipe(
+        map(datas => {
+          return datas.filter((data) => {
+            if (this.resultFilter.length){
+              return data.user_status === this.resultFilter;
+            }
+            return data.user_status;
+          });
+        }),
+      )
+      .subscribe((response: Array<StaffInterface>) => {
+        this.loading = false;
+        this.error = false;
+        this.staffCollect = response;
+      }, (error) => {
+        this.loading = false;
+        this.error = true;
+      });
   }
   handleEdit(payload: StaffInterface): void{
     this.dialog.open(CompanyStaffEditComponent, {

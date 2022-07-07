@@ -1,143 +1,145 @@
-<script src="company-staff-edit.component.ts"></script><h3>
-  Add Staff Company
-</h3>
-<hr>
+<form [formGroup]="formGroupStaff">
+  <h3>
+    Add Staff Company
+  </h3>
+  <hr>
   <div mat-dialog-content>
-      <div class="row">
-        <div class="col">
-          <div class="d-flex">
-            <div class="mr-2">
-              <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input
-                  [(ngModel)]="dataStaff.email"
-                  matInput
-                  type="email"
-                  required
-                >
-              </mat-form-field>
-            </div>
-            <div class="mr-2">
-              <button
-                (click)="handleValidateEmail()"
-                class="btn btn-warning"
-              >
-                Check Email Activity
-              </button>
-            </div>
-            <div
-              *ngIf="isValidEmail"
-              class="d-flex justify-content-center text-success">
-              Email is Ready
-            </div>
-            <div
-              *ngIf="!isValidEmail"
-              class="d-flex justify-content-center text-danger">
-              Email is Wrong
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3">
-          <div class="d-flex">
-            <span class="mr-3">Civility</span>
-            <div >
-              <mat-radio-group
-                class="d-flex"
-                aria-label="Select an option"
-                [(ngModel)]="dataStaff.civility"
+    <div class="row">
+      <div class="col">
+        <div class="d-flex">
+          <div class="mr-2">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                formControlName="email"
+                [(ngModel)]="dataStaff.email"
+                matInput
+                type="email"
                 required
               >
-                <mat-radio-button
-                  class="mr-2"
-                  value="MR"
-                  [checked]="dataStaff.civility === 'MR'">
-                  Mr
-                </mat-radio-button>
-                <mat-radio-button
-                  value="MRS"
-                  [checked]="dataStaff.civility === 'MRS'"
-                >
-                  Ms
-                </mat-radio-button>
-              </mat-radio-group>
-            </div>
+            </mat-form-field>
+          </div>
+          <div class="mr-2">
+            <button
+              (click)="handleValidateEmail()"
+              class="btn btn-warning"
+            >
+              Check Email Activity
+            </button>
+          </div>
+          <div
+            *ngIf="isValidEmail && formGroupStaff.get('email').touched"
+            class="d-flex justify-content-center text-success">
+            Email is Ready
+          </div>
+          <div
+            *ngIf="!isValidEmail && formGroupStaff.get('email').touched"
+            class="d-flex justify-content-center text-danger">
+            Email is Wrong
           </div>
         </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>First name</mat-label>
-            <input
-              [(ngModel)]="dataStaff.firstName"
-              matInput type="text"
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="d-flex">
+          <span class="mr-3">Civility</span>
+          <div >
+            <mat-radio-group
+              class="d-flex"
+              aria-label="Select an option"
+              formControlName="civility"
               required
             >
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Last name</mat-label>
-            <input
-              [(ngModel)]="dataStaff.lastName"
-              matInput type="text"
-              required
-            >
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Position</mat-label>
-            <input
-              [(ngModel)]="dataStaff.position"
-              matInput type="text"
-            >
-          </mat-form-field>
+              <mat-radio-button
+                class="mr-2"
+                value="MR"
+                [checked]="dataStaff.civility === 'MR'">
+                Mr
+              </mat-radio-button>
+              <mat-radio-button
+                value="MRS"
+                [checked]="dataStaff.civility === 'MRS'"
+              >
+                Ms
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Office Phone</mat-label>
-            <input
-              [(ngModel)]="dataStaff.officePhone"
-              matInput type="text"
-            >
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Direct Line</mat-label>
-            <input
-              [(ngModel)]="dataStaff.directLine"
-              matInput type="text"
-            >
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Mobile Phone</mat-label>
-            <input
-              [(ngModel)]="dataStaff.mobilePhone"
-              matInput type="text"
-            >
-          </mat-form-field>
-        </div>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>First name</mat-label>
+          <input
+            formControlName="first_name"
+            matInput type="text"
+            required
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Last name</mat-label>
+          <input
+            formControlName="last_name"
+            matInput type="text"
+            required
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Position</mat-label>
+          <input
+            formControlName="position"
+            matInput type="text"
+          >
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Office Phone</mat-label>
+          <input
+            formControlName="office_phone"
+            matInput type="text"
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Direct Line</mat-label>
+          <input
+            formControlName="direct_line"
+            matInput type="text"
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Mobile Phone</mat-label>
+          <input
+            formControlName="mobile_phone"
+            matInput type="text"
+          >
+        </mat-form-field>
+      </div>
 
-      </div>
-  </div>
-      <div class="row">
-        <div class="col-3">
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div formGroupName="company">
           <mat-form-field >
             <mat-label>Select Company</mat-label>
             <select matNativeControl
-                    [(ngModel)]="dataStaff.companyName"
+                    formControlName="name"
                     required
             >
               <option
                 value="Company"
                 [selected]="dataStaff.companyName === 'Company'">
-                  Company
+                Company
               </option>
               <option
                 value="Personal"
@@ -145,11 +147,13 @@
             </select>
           </mat-form-field>
         </div>
-        <div class="col-3">
+      </div>
+      <div class="col-3">
+        <div formGroupName="company">
           <mat-form-field>
             <mat-label>Select Entity</mat-label>
             <select matNativeControl
-                    [(ngModel)]="dataStaff.userType"
+                    formControlName="user_type"
                     required
             >
               <option value="Mentor"  [selected]="dataStaff.userType === 'Mentor'">
@@ -161,34 +165,35 @@
             </select>
           </mat-form-field>
         </div>
-        <div class="col-3">
-          <mat-form-field>
-            <mat-label>Count document</mat-label>
-            <input
-              [(ngModel)]="dataStaff.countDocument"
-              matInput type="text"
-              required
-            >
-          </mat-form-field>
-        </div>
       </div>
-  <div class="row justify-content-center text-center" mat-dialog-actions>
-    <div class="col">
-      <button class="btn btn-warning mr-2"
-              mat-dialog-close="false"
-      >Cancel</button>
-      <button
-        class="btn btn-primary"
-        (click)="handleSave()"
-        [disabled]="
-          !this.dataStaff.email ||
-          !this.dataStaff.firstName ||
-          !this.dataStaff.lastName ||
-          !this.dataStaff.civility ||
-          !this.dataStaff.companyName ||
-          !this.dataStaff.userType ||
-          !this.dataStaff.userStatus
-        "
-      >Ok</button>
+      <div class="col-3">
+        <mat-form-field>
+          <mat-label>Count document</mat-label>
+          <input
+            formControlName="count_document"
+            matInput type="text"
+            required
+          >
+        </mat-form-field>
+      </div>
     </div>
   </div>
+
+  <div class="" mat-dialog-actions>
+    <div class="row justify-content-center text-center">
+      <div class="col">
+        <button class="btn btn-warning mr-2"
+                mat-dialog-close="false"
+        >Cancel</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="handleSave()"
+          [disabled]="!formGroupStaff.valid && this.isValidEmail"
+
+        >Ok</button>
+      </div>
+    </div>
+  </div>
+
+</form>

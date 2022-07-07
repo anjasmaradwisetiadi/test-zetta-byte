@@ -16,3 +16,7 @@ export interface StaffInterface{
   direct_line: string;
   mobile_phone: string;
 }
+
+export interface ProductInterface{
+  products: StaffInterface[];
+}

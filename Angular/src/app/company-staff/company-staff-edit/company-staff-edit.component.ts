@@ -27,13 +27,14 @@ export class CompanyStaffEditComponent implements OnInit {
   };
   isValidEmail = false;
   buttonEmail = true;
+
+  formGroupStaff: FormGroup;
   constructor(
     private companyStaffService: CompanyStaffService,
     private dialogRef: MatDialogRef<CompanyStaffEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
   ngOnInit(): void {
-
     this.initForm();
   }
 
@@ -45,22 +46,13 @@ export class CompanyStaffEditComponent implements OnInit {
       uniqueId = Math.floor(Math.random() * 100);
     }
 
-    const payload: StaffInterface = {
-      id: uniqueId,
-      email: this.dataStaff.email,
-      civility: this.dataStaff.civility,
-      first_name: this.dataStaff.firstName,
-      last_name: this.dataStaff.lastName,
-      company: {
-        name: this.dataStaff.companyName,
-        user_type: this.dataStaff.userType
-      },
-      user_status: 'active',
-      count_document: 15,
-      position: this.dataStaff.position,
-      office_phone: this.dataStaff.officePhone,
-      direct_line: this.dataStaff.directLine,
-      mobile_phone: this.dataStaff.mobilePhone,
+    this.handleValidateEmail();
+
+    const idPayload = {
+      id : uniqueId
+    };
+    const payload = {
+      ...this.formGroupStaff.value, ...idPayload
     };
 
     if (this.data.toggle === 'edit'){
@@ -77,6 +69,7 @@ export class CompanyStaffEditComponent implements OnInit {
 
   }
   initForm(): void{
+
     this.dataStaff.email = '';
     this.dataStaff.firstName = '';
     this.dataStaff.lastName = '';
@@ -104,6 +97,23 @@ export class CompanyStaffEditComponent implements OnInit {
       this.dataStaff.userStatus = this.data.editData.user_status;
       this.dataStaff.countDocument = this.data.editData.count_document;
     }
+
+    this.formGroupStaff = new FormGroup({
+      email: new FormControl(this.dataStaff.email, Validators.required),
+      civility: new FormControl(this.dataStaff.civility, Validators.required),
+      first_name: new FormControl(this.dataStaff.firstName, Validators.required),
+      last_name: new FormControl(this.dataStaff.lastName),
+      company: new FormGroup({
+        name: new FormControl(this.dataStaff.companyName, Validators.required),
+        user_type: new FormControl(this.dataStaff.directLine, Validators.required)
+      }),
+      user_status: new FormControl(this.dataStaff.userStatus, Validators.required) ,
+      count_document: new FormControl(this.dataStaff.countDocument, Validators.required),
+      position: new FormControl(this.dataStaff.position),
+      office_phone: new FormControl(this.dataStaff.officePhone),
+      direct_line: new FormControl(this.dataStaff.directLine),
+      mobile_phone: new FormControl(this.dataStaff.mobilePhone),
+    });
   }
 
   handleValidateEmail(): void{

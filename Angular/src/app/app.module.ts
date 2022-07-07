@@ -22,6 +22,7 @@ import { CompanyStaffDeleteComponent } from './company-staff/company-staff-delet
 import { LoadingComponent } from './component/loading/loading.component';
 import { ErrorComponent } from './component/error/error.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CompanyStaffFilterComponent } from './company-staff/company-staff-filter/company-staff-filter.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     CompanyStaffListComponent,
     CompanyStaffDeleteComponent,
     LoadingComponent,
-    ErrorComponent
+    ErrorComponent,
+    CompanyStaffFilterComponent
   ],
   entryComponents: [
     CompanyStaffEditComponent,
@@ -51,7 +53,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     MatRadioModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
     MatProgressSpinnerModule,

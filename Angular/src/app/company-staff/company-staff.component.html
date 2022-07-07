@@ -1,3 +1,4 @@
+<script src="company-staff-filter/company-staff-filter.component.ts"></script>
 <div class="mt-5 mb-5">
   <div class="d-flex justify-content-between">
     <div>
@@ -19,38 +20,7 @@
       </button>
     </div>
   </div>
-  <div>
-    <h5>
-      Filter:
-    </h5>
-    <div class="row">
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label>Search</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label>User Type</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label>Entity</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label>Status</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
+  <app-company-staff-filter></app-company-staff-filter>
   <div>
     <h5>Staff List</h5>
     <hr>
